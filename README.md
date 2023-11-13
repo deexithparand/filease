@@ -36,7 +36,3 @@ Check the [examples](examples) directory for usage examples.
 ## Troubleshooting
 
 If you encounter any problems or have questions, please check the [FAQ](docs/FAQ.md) or [open an issue](https://github.com/deexithparand2k2/go-filereader/issues).
-
----
-
-Feel free to customize this README based on your specific needs and project details.
