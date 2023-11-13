@@ -84,8 +84,10 @@ func getFileContents(file_path string,extension string) (string,error){
 
 
 // main func of module
-// input : path (string), fileStatus (struct{AcceptableExt bool, Extension string})
-func FileExtractWrapper(file_path string, checkFileStatus FileStatus) string{
+// input : path (string)
+func FileExtractWrapper(file_path string) string{
+
+	var checkFileStatus FileStatus
 
 	if checkFileStatus=checkFileExtension(file_path); !checkFileStatus.AcceptableExt {
 		log.Fatalf("Extension Not Accessible Error: %s", checkFileStatus.Extension)
