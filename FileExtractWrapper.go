@@ -6,7 +6,7 @@ import (
 	"log"
 	"io/ioutil"
 	"os"
-	"github.com/deexithparand2k2/go-filereader/fileExtractor"
+	"github.com/DeexithParand2k2/go-filereader/fileExtractor"
 )
 
 
