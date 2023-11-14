@@ -71,10 +71,6 @@ func getFileContents(file_path string,extension string) (string,error){
 		}
 		return text, nil
 
-	} else if extension==".pdf" {
-
-		//no implementation yet
-
 	} else {
 
 	}
@@ -85,20 +81,22 @@ func getFileContents(file_path string,extension string) (string,error){
 
 // main func of module
 // input : path (string)
-func FileExtractWrapper(file_path string) string{
+func FileExtractWrapper(file_path string) (string,string) {
 
 	var checkFileStatus FileStatus
 
 	if checkFileStatus=checkFileExtension(file_path); !checkFileStatus.AcceptableExt {
 		log.Fatalf("Extension Not Accessible Error: %s", checkFileStatus.Extension)
+		return "","Extension Not Accessible Error"
 	}
 
 	contents,err := getFileContents(file_path,checkFileStatus.Extension)
 	if err!=nil{
 		log.Fatalf("File Reading Error: %s",err)
+		return "","File Reading Error"
 	}
 
-	return contents
+	return contents,"No Error"
 }
 
 
