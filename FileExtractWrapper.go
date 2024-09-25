@@ -1,18 +1,17 @@
-package fileExtractWrapper
+package FileEase
 
 import (
-	"path/filepath"
 	"fmt"
 	"log"
-	"io/ioutil"
 	"os"
-	"github.com/DeexithParand2k2/go-filereader/fileExtractor"
+	"path/filepath"
+
+	"github.com/DeexithParand2k2/FileEase/fileExtractor"
 )
 
-
-type FileStatus struct{
+type FileStatus struct {
 	AcceptableExt bool
-	Extension string
+	Extension     string
 }
 
 func checkFileExtension(file_path string) FileStatus {
@@ -20,15 +19,15 @@ func checkFileExtension(file_path string) FileStatus {
 	extension := filepath.Ext(file_path)
 
 	resStatus := FileStatus{
-		AcceptableExt : false,
-		Extension : extension,
+		AcceptableExt: false,
+		Extension:     extension,
 	}
 
-	if extension==".docx"{
+	if extension == ".docx" {
 		resStatus.AcceptableExt = true
-	} else if extension==".txt"{
+	} else if extension == ".txt" {
 		resStatus.AcceptableExt = true
-	} else if extension==".pdf"{
+	} else if extension == ".pdf" {
 		resStatus.AcceptableExt = false
 	} else {
 		resStatus.AcceptableExt = false
@@ -37,69 +36,64 @@ func checkFileExtension(file_path string) FileStatus {
 	return resStatus
 }
 
-func getFileContents(file_path string,extension string) (string,error){
+func getFileContents(file_path string, extension string) (string, error) {
 
-	if extension==".txt" {
-		
-		bytesContent,err := ioutil.ReadFile(file_path)
+	if extension == ".txt" {
+
+		bytesContent, err := os.ReadFile(file_path)
 		if err != nil {
 			return "", err
 		}
-		
-		return string(bytesContent),nil
 
-	} else if extension==".docx" {
+		return string(bytesContent), nil
+
+	} else if extension == ".docx" {
 
 		file, err := os.Open(file_path)
 		if err != nil {
 			log.Fatalf("Error opening file: %s", err)
-			return "",err
+			return "", err
 		}
 		defer file.Close()
-
 
 		stat, err := file.Stat()
 		if err != nil {
 			log.Fatalf("Error getting file info: %s", err)
-			return "",err
+			return "", err
 		}
 
 		text, err := fileExtractor.DOCX2Text(file, stat.Size())
 		if err != nil {
 			log.Fatalf("Error extracting text: %s", err)
-			return "",err
+			return "", err
 		}
 		return text, nil
 
-	} else {
-
 	}
-	
-	return "",nil;
-}
 
+	return "", nil
+}
 
 // main func of module
 // input : path (string)
-func FileExtractWrapper(file_path string) (string,string) {
+func FileExtractWrapper(file_path string) (string, string) {
 
 	var checkFileStatus FileStatus
 
-	if checkFileStatus=checkFileExtension(file_path); !checkFileStatus.AcceptableExt {
+	if checkFileStatus = checkFileExtension(file_path); !checkFileStatus.AcceptableExt {
 		log.Fatalf("Extension Not Accessible Error: %s", checkFileStatus.Extension)
-		return "","Extension Not Accessible Error"
+		return "", "Extension Not Accessible Error"
 	}
 
-	contents,err := getFileContents(file_path,checkFileStatus.Extension)
-	if err!=nil{
-		log.Fatalf("File Reading Error: %s",err)
-		return "","File Reading Error"
+	contents, err := getFileContents(file_path, checkFileStatus.Extension)
+	if err != nil {
+		log.Fatalf("File Reading Error: %s", err)
+		return "", "File Reading Error"
 	}
 
-	return contents,"No Error"
+	return contents, "No Error"
 }
 
-
-func init(){
+func init() {
 	fmt.Println("[FileExtractWrapper-Package] initializing ...")
 }
