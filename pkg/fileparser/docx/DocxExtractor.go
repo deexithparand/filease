@@ -1,4 +1,4 @@
-package fileExtractor
+package docx
 
 // referred from https://github.com/IntelligenceX/fileconversion
 
@@ -7,7 +7,6 @@ import (
 	"bytes"
 	"encoding/xml"
 	"io"
-	"io/ioutil"
 	"strings"
 )
 
@@ -104,7 +103,7 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 		}
 		defer rc.Close()
 		if f.Name == "word/document.xml" {
-			doc, err := ioutil.ReadAll(rc)
+			doc, err := io.ReadAll(rc)
 			if err != nil {
 				return "", err
 			}
