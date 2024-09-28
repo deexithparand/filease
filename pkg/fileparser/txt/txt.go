@@ -1,9 +1,17 @@
 package txt
 
-import "io"
+import (
+	"os"
+	"strings"
+)
 
-type txt struct{}
+type Txt struct{}
 
-func (t txt) Parse(file io.Reader, size int64) (string, error) {
-	return "txt file", nil
+func (t Txt) Parse(filepath string) (string, error) {
+	fileContents, err := os.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+
+	return strings.TrimSpace(string(fileContents)), nil
 }

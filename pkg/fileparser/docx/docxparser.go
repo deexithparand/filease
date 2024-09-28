@@ -4,7 +4,6 @@ package docx
 
 import (
 	"archive/zip"
-	"bytes"
 	"encoding/xml"
 	"io"
 	"strings"
@@ -41,23 +40,6 @@ func (w WordDocument) AsText() string {
 		text += "\n"
 	}
 	return text
-}
-
-// DOCX2Text extracts text of a Word document
-// Size is the full size of the input file.
-func DOCX2Text(file io.ReaderAt, size int64) (string, error) {
-
-	doc, err := openWordFile(file, size)
-	if err != nil {
-		return "", err
-	}
-
-	docx, err := WordParse(doc)
-	if err != nil {
-		return "", err
-	}
-
-	return docx.AsText(), nil
 }
 
 // WordParse parses a word file
@@ -116,6 +98,23 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 
 // IsFileDOCX checks if the data indicates a DOCX file
 // DOCX has a signature of 50 4B 03 04
-func IsFileDOCX(data []byte) bool {
-	return bytes.HasPrefix(data, []byte{0x50, 0x4B, 0x03, 0x04})
+// func IsFileDOCX(data []byte) bool {
+// 	return bytes.HasPrefix(data, []byte{0x50, 0x4B, 0x03, 0x04})
+// }
+
+// DOCX2Text extracts text of a Word document
+// Size is the full size of the input file.
+func DOCX2Text(file io.ReaderAt, size int64) (string, error) {
+
+	doc, err := openWordFile(file, size)
+	if err != nil {
+		return "", err
+	}
+
+	docx, err := WordParse(doc)
+	if err != nil {
+		return "", err
+	}
+
+	return docx.AsText(), nil
 }

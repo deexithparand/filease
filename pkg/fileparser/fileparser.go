@@ -1,7 +1,9 @@
-package FileEase
-
-import "io"
+package fileparser
 
 type Parser interface {
-	Parse(file io.Reader, size int64)
+	Parse(filepath string) (string, error)
+}
+
+func ParseFile(p Parser, filepath string) (string, error) {
+	return p.Parse(filepath)
 }
