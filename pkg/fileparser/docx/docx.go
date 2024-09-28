@@ -9,7 +9,7 @@ type Docx struct{}
 
 func (d Docx) Parse(filepath string) (string, error) {
 
-	file, err := os.Open("./testdata/sample.docx")
+	file, err := os.Open(filepath)
 	if err != nil {
 		return "", err
 	}
