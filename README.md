@@ -9,7 +9,7 @@ To use `FileEase` in your Go project, follow these steps:
 1. Install the module using the `go get` command:
 
     ```bash
-    go get github.com/DeexithParand2k2/FileEase
+    go get github.com/deexithparand/FileEase
     ```
 
 
@@ -22,8 +22,8 @@ To use `FileEase` in your Go project, follow these steps:
 
 Contributions to this project are welcome! If you encounter any issues or have suggestions for improvements, feel free to:
 
-- Open an [issue](https://github.com/DeexithParand2k2/FileEase/issues)
-- Submit a [pull request](https://github.com/DeexithParand2k2/FileEase/pulls)
+- Open an [issue](https://github.com/deexithparand/FileEase/issues)
+- Submit a [pull request](https://github.com/deexithparand/FileEase/pulls)
 
 ## License
 
@@ -35,4 +35,4 @@ Check the [examples](examples) directory for usage examples.
 
 ## Troubleshooting
 
-If you encounter any problems or have questions, please check the [FAQ](docs/FAQ.md) or [open an issue](https://github.com/DeexithParand2k2/FileEase/issues).
+If you encounter any problems or have questions, please check the [FAQ](docs/FAQ.md) or [open an issue](https://github.com/deexithparand/FileEase/issues).

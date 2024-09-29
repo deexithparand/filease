@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/DeexithParand2k2/FileEase/pkg/fileparser"
-	"github.com/DeexithParand2k2/FileEase/pkg/fileparser/docx"
+	"github.com/deexithparand/FileEase/pkg/fileparser"
+	"github.com/deexithparand/FileEase/pkg/fileparser/docx"
 )
 
 func main() {

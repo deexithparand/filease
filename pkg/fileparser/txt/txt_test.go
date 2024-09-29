@@ -3,7 +3,7 @@ package txt
 import (
 	"testing"
 
-	"github.com/DeexithParand2k2/FileEase/pkg/fileparser"
+	"github.com/deexithparand/FileEase/pkg/fileparser"
 )
 
 func TestTxtParser(t *testing.T) {
